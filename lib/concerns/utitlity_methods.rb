@@ -9,7 +9,7 @@ module UtilityMethods
     old_sub_address = @result[ip.split(':')[0]].split(':')[1]
     append_sub_address = split_and_compare_data(old_sub_address, new_sub_address)
     sorted_sub_address = sort_data(append_sub_address)
-    new_address = ip.split(':')[0] + ':' + sorted_sub_address
+    new_address = "#{ip.split(':')[0]}:#{sorted_sub_address}"
     @result[ip.split(':')[0]] = new_address
   end
 
@@ -19,5 +19,9 @@ module UtilityMethods
 
   def split_and_compare_data(old_sub_address, new_sub_address)
     (old_sub_address.split(',') | new_sub_address.split(','))
+  end
+
+  def contain_letters?(data)
+    data.match(/[A-Za-z]/) ? true : false
   end
 end
