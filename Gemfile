@@ -1,5 +1,5 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "rspec"
-gem "rspec-mocks"
-gem "rubocop"
+gem 'rspec'
+gem 'rspec-mocks'
+gem 'rubocop'
