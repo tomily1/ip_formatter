@@ -16,4 +16,19 @@ Output should be:
 1. `git clone` the repo 
 2. `cd` into the folder cloned
 3.  run `ruby ./lib/ip_formatter.rb 'text_file_name.txt'` on the command line. e.g. to use the test file included in this repository, run `ruby ./lib/ip_formatter.rb './test.txt'` on the command line
-4. Tada! you have your result displayed :)
+4. You have your result displayed
+
+
+### Testing and Development
+
+#### Gems
+* Rubocop
+* RSpec
+* RSpec Mocks
+
+#### Testing
+1. `git clone` the repo 
+2. `cd` into the folder cloned
+3. run `bundle install`
+4. run `rspec`
+
