@@ -1,4 +1,7 @@
- #### ``` Problem Set: Given a  an input of IPV4 addresses in a txt file, create a command line application that takes the input and prints out a set of unique ips with addresses in sorted order ```
+ ### IP Formatter
+ ``` 
+ Problem Set: Given a  an input of IPV4 addresses in a txt file, create a command line application that takes the input and prints out a set of unique ips with addresses in sorted order 
+ ```
 
 ```
 Example: Given IPs 1.2.3.5:25,7,8  1.2.3.5:25,7,8,8,1  1.2.3.6:10,1,12,1,1,14,2,1,9,5,7 in a text file
