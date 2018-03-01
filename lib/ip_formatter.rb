@@ -1,5 +1,4 @@
-require 'pry'
-require 'concerns/utitlity_methods.rb'
+require_relative './concerns/utitlity_methods.rb'
 class IpFormatter
   include UtilityMethods
   attr_reader :data, :file_path, :result
@@ -21,12 +20,13 @@ class IpFormatter
 
   def format_data
     return unless result[:errors].nil?
-    @data.each do |data|
-      ip_data = data.split(':')
+    @data.each do |ip|
+      next if invalid_ip?(ip)
+      ip_data = ip.split(':')
       if @result[ip_data[0]].nil?
-        create_ip_key(data)
+        create_ip_key(ip)
       else
-        append_ip_data(data)
+        append_ip_data(ip)
       end
     end
   end
@@ -34,6 +34,11 @@ class IpFormatter
   def display_result
     prepare_file
     format_data
-    @result.values
+    @result.values.sort
   end
+end
+
+if !ARGV[0].nil?
+  formatter = IpFormatter.new(ARGV[0])
+  p formatter.display_result
 end

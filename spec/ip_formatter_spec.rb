@@ -42,11 +42,20 @@ describe IpFormatter do
   context "File has invalid format" do
     before do
       allow(File).to receive(:open).with('invalid_data', 'rb').and_return('1.sasds2.3.5:25,7,8\n1.2.3.5:25,7,8,8,1\n1.2.3.6:10,1,12,1,1,14,2,1,9,5,7')
+      allow(File).to receive(:open).with('sample_file', 'rb').and_return("1.2.3.5:25,7,8\n1.2.3.5:25,7,8,8,1\n1.2\n1.2.3.6:10,1\n1.2.4.6:10,1,12,\n1.2.3.6:10,1,12,1,1,11\n1.2.4.6:10,1,5,3")
       allow(File).to receive(:exists?).and_return(true)
     end
-    it 'should return invalid format error' do
+    it 'should return invalid format error if data has alphabets' do
       formatter = IpFormatter.new('invalid_data')
       expect(formatter.display_result).to eq ["Invalid File format"]
+    end
+
+    it 'should return error if some data is not valid but still run' do
+      formatter = IpFormatter.new('sample_file')
+      expect(formatter.display_result).to include "file contains IP(s) that are not formatted properly"
+      expect(formatter.display_result).not_to include "1.2"
+      expect(formatter.display_result).to include "1.2.3.5:1,7,8,25", "1.2.3.6:1,10,11,12", "1.2.4.6:1,3,5,10,12"
+      expect(formatter.display_result.count).to eq 4
     end
   end
 end

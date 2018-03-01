@@ -24,4 +24,13 @@ module UtilityMethods
   def contain_letters?(data)
     data.match(/[A-Za-z]/) ? true : false
   end
+
+  def invalid_ip?(ip)
+    if ip.split(":").count == 1
+      @result[:error] = "file contains IP(s) that are not formatted properly"
+      true
+    else
+      false
+    end
+  end
 end
