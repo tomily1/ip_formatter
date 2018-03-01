@@ -22,7 +22,7 @@ module UtilityMethods
   end
 
   def contain_letters?(data)
-    data.match(/[A-Za-z]/) ? true : false
+    data =~ /[A-Za-z]/ ? true : false
   end
 
   def invalid_ip?(ip)
