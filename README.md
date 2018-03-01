@@ -15,6 +15,5 @@ Output should be:
 
 1. `git clone` the repo 
 2. `cd` into the folder cloned
-3.  run `ruby ip_formatter.rb 'text_file_name.txt'` on the command line
-    3b. to use the test file included in this repository, run `ruby ip_formatter.rb './test.txt'` on the command line
+3.  run `ruby ip_formatter.rb 'text_file_name.txt'` on the command line. e.g. to use the test file included in this repository, run `ruby ip_formatter.rb './test.txt'` on the command line
 4. Tada! you have your result displayed :)

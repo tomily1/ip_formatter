@@ -53,8 +53,6 @@ class IpFormatter
   end
 end
 
-p "IP FORMATTER"
-p ""
+p 'IP FORMATTER'
 formatter = IpFormatter.new(ARGV[0])
 p formatter.get_result
-p ""
