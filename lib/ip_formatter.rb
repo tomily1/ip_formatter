@@ -9,7 +9,7 @@ class IpFormatter
   end
 
   def prepare_file
-    if File.exists?(@file_path)
+    if File.exist?(@file_path)
       data = File.open(@file_path, 'rb', &:read)
       result[:errors] = 'Invalid File format' if contain_letters?(data)
       @data = data.split("\n")
@@ -23,6 +23,7 @@ class IpFormatter
     @data.each do |ip|
       next if invalid_ip?(ip)
       ip_data = ip.split(':')
+
       if @result[ip_data[0]].nil?
         create_ip_key(ip)
       else
@@ -38,7 +39,7 @@ class IpFormatter
   end
 end
 
-if !ARGV[0].nil?
+unless ARGV[0].nil?
   formatter = IpFormatter.new(ARGV[0])
   p formatter.display_result
 end

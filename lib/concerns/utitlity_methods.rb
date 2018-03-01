@@ -7,10 +7,21 @@ module UtilityMethods
   def append_ip_data(ip)
     new_sub_address = ip.split(':')[1]
     old_sub_address = @result[ip.split(':')[0]].split(':')[1]
-    append_sub_address = split_and_compare_data(old_sub_address, new_sub_address)
+    return if new_sub_address == old_sub_address
+    @result[ip.split(':')[0]] = full_address(
+      ip.split(':')[0],
+      old_sub_address,
+      new_sub_address
+    )
+  end
+
+  def full_address(ip, old_sub_address, new_sub_address)
+    append_sub_address = split_and_compare_data(
+      old_sub_address,
+      new_sub_address
+    )
     sorted_sub_address = sort_data(append_sub_address)
-    new_address = "#{ip.split(':')[0]}:#{sorted_sub_address}"
-    @result[ip.split(':')[0]] = new_address
+    "#{ip}:#{sorted_sub_address}"
   end
 
   def sort_data(ip)
@@ -26,8 +37,8 @@ module UtilityMethods
   end
 
   def invalid_ip?(ip)
-    if ip.split(":").count == 1
-      @result[:error] = "file contains IP(s) that are not formatted properly"
+    if ip.split(':').count == 1
+      @result[:error] = 'file contains IP(s) that are not formatted properly'
       true
     else
       false
