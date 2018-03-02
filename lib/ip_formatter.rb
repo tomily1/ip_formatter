@@ -22,13 +22,19 @@ class IpFormatter
     return unless result[:errors].nil?
     @data.each do |ip|
       next if invalid_ip?(ip)
-      ip_data = ip.split(':')
+      create_ip(ip)
+    end
+  end
 
-      if @result[ip_data[0]].nil?
-        create_ip_key(ip)
-      else
-        append_ip_data(ip)
-      end
+  def create_ip(ip)
+    ip_data = ip.split(':')
+    new_sub_address = ip_data[1]
+
+    if @result[ip_data[0]].nil?
+      create_ip_key(ip)
+    else
+      old_sub_address = @result[ip_data[0]].split(':')[1]
+      append_ip_data(ip, new_sub_address, old_sub_address)
     end
   end
 

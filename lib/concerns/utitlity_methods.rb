@@ -4,10 +4,7 @@ module UtilityMethods
     @result[ip.split(':')[0]] = ip.split(':')[0] + ':' + sub_address
   end
 
-  def append_ip_data(ip)
-    new_sub_address = ip.split(':')[1]
-    old_sub_address = @result[ip.split(':')[0]].split(':')[1]
-    return if new_sub_address == old_sub_address
+  def append_ip_data(ip, new_sub_address, old_sub_address)
     @result[ip.split(':')[0]] = full_address(
       ip.split(':')[0],
       old_sub_address,
@@ -37,11 +34,8 @@ module UtilityMethods
   end
 
   def invalid_ip?(ip)
-    if ip.split(':').count == 1
-      @result[:error] = 'file contains IP(s) that are not formatted properly'
-      true
-    else
-      false
-    end
+    return false unless ip.split(':').count == 1
+    @result[:error] = 'file contains IP(s) that are not formatted properly'
+    true
   end
 end
